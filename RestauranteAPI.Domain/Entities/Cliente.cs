@@ -1,10 +1,5 @@
 ﻿using RestauranteAPI.Domain.Common;
 using RestauranteAPI.Domain.Validation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RestauranteAPI.Domain.Entities
 {

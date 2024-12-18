@@ -1,0 +1,18 @@
+services:
+  restauranteapi.presentation:
+    image: ${DOCKER_REGISTRY-}restauranteapipresentation
+    build:
+      context: .
+      dockerfile: RestauranteAPI.Presentation/Dockerfile
+    depends_on:
+      - sqlserver
+
+  sqlserver:
+     image: mcr.microsoft.com/mssql/server
+     container_name: ConectaFapesDB
+     ports:
+         - "1433:1433"
+     environment:
+         ACCEPT_EULA: "Y"
+         MSSQL_SA_PASSWORD: "10q20w30e40r#$"
+     restart: unless-stopped

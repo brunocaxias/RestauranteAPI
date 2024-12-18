@@ -2,11 +2,6 @@
 using RestauranteAPI.Domain.Common;
 using RestauranteAPI.Domain.Interfaces.Common;
 using RestauranteAPI.Infrastructure.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RestauranteAPI.Infrastructure.Repositories.Common
 {
@@ -21,9 +16,9 @@ namespace RestauranteAPI.Infrastructure.Repositories.Common
             DbSet = Context.Set<T>();
         }
 
-        public Task<bool> Any(Guid id)
+        public async Task<bool> Any(Guid id)
         {
-            throw new NotImplementedException();
+            return await DbSet.AnyAsync(x => x.Id == id);
         }
 
         public async Task Create(T entity)
@@ -40,17 +35,21 @@ namespace RestauranteAPI.Infrastructure.Repositories.Common
         public IQueryable<T> GetAll()
         {
             return DbSet
+                .AsSplitQuery()
                 .AsQueryable();
         }
 
         public IQueryable<T> GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return DbSet
+                .Where(x => x.Id == id)
+                .AsSplitQuery()
+                .AsQueryable();
         }
 
-        public Task Update(T entity)
+        public async Task Update(T entity)
         {
-            throw new NotImplementedException();
+            await Task.Run(() => Context.Update(entity), new CancellationToken());
         }
     }
 }

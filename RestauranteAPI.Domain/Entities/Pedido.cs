@@ -8,7 +8,7 @@ namespace RestauranteAPI.Domain.Entities
     {
         public DateTimeOffset Data { get; set; }
         public decimal Valor { get; set; }
-        public Guid PedidoClienteId {  get; set; }
+        public Guid PedidoClienteId { get; set; }
         public Cliente? Cliente { get; set; }
         public EstadoPedido EstadoPedido { get; set; }
 
@@ -23,6 +23,7 @@ namespace RestauranteAPI.Domain.Entities
 
             Data = data;
             Valor = valor;
+            PedidoClienteId = pedidoClienteId;
         }
 
         private List<string> PedidoValidator(DateTimeOffset data, decimal valor, Guid pedidoClienteId)
