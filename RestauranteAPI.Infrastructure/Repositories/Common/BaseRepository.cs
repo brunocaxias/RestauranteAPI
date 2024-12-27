@@ -21,9 +21,9 @@ namespace RestauranteAPI.Infrastructure.Repositories.Common
             DbSet = Context.Set<T>();
         }
 
-        public Task<bool> Any(Guid id)
+        public async Task<bool> Any(Guid id)
         {
-            throw new NotImplementedException();
+            return await DbSet.AnyAsync(x =>x.Id.Equals(id));
         }
 
         public async Task Create(T entity)
@@ -45,12 +45,15 @@ namespace RestauranteAPI.Infrastructure.Repositories.Common
 
         public IQueryable<T> GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return DbSet
+                .Where(x => x.Id == id)
+                .AsNoTracking()
+                .AsQueryable();
         }
 
-        public Task Update(T entity)
+        public async Task Update(T entity)
         {
-            throw new NotImplementedException();
+            await Task.Run(() => Context.Update(entity), new CancellationToken());
         }
     }
 }

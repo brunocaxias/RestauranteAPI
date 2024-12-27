@@ -1,0 +1,26 @@
+version: '3.4'
+
+services:
+  restauranteapi.webapi:
+    image: ${DOCKER_REGISTRY-}restauranteapiwebapi
+    build:
+      context: .
+      dockerfile: RestauranteAPI.WebApi/Dockerfile
+    ports: 
+      - "3001:8080"
+      - "3000:8081"
+    environment:
+      - SQLSERVER=${SQLSERVER}
+ 
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server
+    container_name: RestauranteDB
+    ports:
+      - "1434:1433"
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "1q2w3e4r#$"
+    #volumes:
+    #  - ./BackupBD:/var/opt/mssql
+    restart: unless-stopped
+
