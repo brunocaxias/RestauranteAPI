@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 version: '3.4'
 
 services:
   restauranteapi.webapi:
+=======
+services:
+  restauranteapi.presentation:
+>>>>>>> 624371678c4db7d24d90d4c257a8334cf0c67e7d
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080

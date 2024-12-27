@@ -4,7 +4,11 @@
       "commandName": "DockerCompose",
       "commandVersion": "1.0",
       "serviceActions": {
+<<<<<<< HEAD
         "restauranteapi.webapi": "StartDebugging"
+=======
+        "restauranteapi.presentation": "StartDebugging"
+>>>>>>> 624371678c4db7d24d90d4c257a8334cf0c67e7d
       }
     }
   }

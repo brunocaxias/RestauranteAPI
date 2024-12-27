@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 version: '3.4'
 
 services:
@@ -24,3 +25,23 @@ services:
     #  - ./BackupBD:/var/opt/mssql
     restart: unless-stopped
 
+=======
+services:
+  restauranteapi.presentation:
+    image: ${DOCKER_REGISTRY-}restauranteapipresentation
+    build:
+      context: .
+      dockerfile: RestauranteAPI.Presentation/Dockerfile
+    depends_on:
+      - sqlserver
+
+  sqlserver:
+     image: mcr.microsoft.com/mssql/server
+     container_name: ConectaFapesDB
+     ports:
+         - "1433:1433"
+     environment:
+         ACCEPT_EULA: "Y"
+         MSSQL_SA_PASSWORD: "10q20w30e40r#$"
+     restart: unless-stopped
+>>>>>>> 624371678c4db7d24d90d4c257a8334cf0c67e7d
